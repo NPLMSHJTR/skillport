@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skillport"
+version = "0.1.0"
+description = "One source of truth for Agent Skills, synced to every agent, with drift detection."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "NPLMSHJTR" }]
+keywords = ["agent-skills", "codex", "claude-code", "cursor", "sync"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Environment :: Console",
+]
+dependencies = []
+
+[project.scripts]
+skillport = "skillport.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/NPLMSHJTR/skillport"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
