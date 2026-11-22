@@ -1,5 +1,7 @@
 # skillport
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 **Write an Agent Skill once. Keep it in sync everywhere it needs to be.**
 
 [![CI](https://github.com/NPLMSHJTR/skillport/actions/workflows/ci.yml/badge.svg)](https://github.com/NPLMSHJTR/skillport/actions/workflows/ci.yml)
@@ -33,6 +35,17 @@ targets: codex, claude, agents
   sync     agents     csv-profile
 
 1 drifted  → run `skillport sync`
+```
+
+## Workflow
+
+```mermaid
+flowchart LR
+    A["1. Edit Canonical Source<br/>(skills/<name>/SKILL.md)"] --> B["2. Preview Sync Plan<br/>(skillport sync --dry-run)"]
+    B --> C["3. Sync to Agent Directories<br/>(skillport sync -> .codex / .claude / .cursor ...)"]
+    C --> D["4. Detect Drift in CI / Hooks<br/>(skillport check -> exit 0 or 1)"]
+    D -->|Drifted| C
+    D -->|Clean orphans| E["skillport prune --yes"]
 ```
 
 ## Why drift detection is the point
